@@ -15,18 +15,26 @@ const (
 
 type Client struct {
 	key string
+	client *http.Client;
 }
 
 // New oxford client based on key
 func NewClient(key string) *Client {
 	c := new(Client)
 	c.key = key
+	c.client = &http.Client{}
+	return c
+}
+
+func NewClientWithClient(key string, cli *http.Client) *Client {
+	c := new(Client)
+	c.key = key
+	c.client = cli
 	return c
 }
 
 // Connect with API url and data, return response byte or error if http.Status is not OK
 func (c *Client) Connect(mode string, url string, data *bytes.Buffer, useJson bool) ([]byte, *ErrorResponse) {
-	client := &http.Client{}
 	r, _ := http.NewRequest(mode, url, data)
 
 	if useJson {
@@ -37,7 +45,7 @@ func (c *Client) Connect(mode string, url string, data *bytes.Buffer, useJson bo
 
 	r.Header.Add("Ocp-Apim-Subscription-Key", c.key)
 	ret := new(ErrorResponse)
-	resp, err := client.Do(r)
+	resp, err := c.client.Do(r)
 	if err != nil {
 		log.Println("er:", err)
 		ret.Err = err

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"log"
+	"net/http"
 )
 
 type Face struct {
@@ -18,6 +19,16 @@ func NewFace(key string) *Face {
 
 	f := new(Face)
 	f.client = NewClient(key)
+	return f
+}
+
+func NewFaceWithClient(key string, cli *http.Client) *Face {
+	if len(key) == 0 {
+		return nil
+	}
+
+	f := new(Face)
+	f.client = NewClientWithClient(key,cli)
 	return f
 }
 
