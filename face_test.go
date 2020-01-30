@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	. "github.com/kkdai/oxford-face"
+	. "github.com/onlyangel/oxford-face"
 )
 
 var API_KEY string

@@ -14,8 +14,8 @@ const (
 )
 
 type Client struct {
-	key string
-	client *http.Client;
+	key    string
+	client *http.Client
 }
 
 // New oxford client based on key
@@ -26,10 +26,11 @@ func NewClient(key string) *Client {
 	return c
 }
 
-func NewClientWithClient(key string, cli *http.Client) *Client {
+func NewClientWithClient(key string, cli *http.Client, endpoint string) *Client {
 	c := new(Client)
 	c.key = key
 	c.client = cli
+	FACE_URL = endpoint + "face/v1.0/"
 	return c
 }
 

@@ -22,13 +22,13 @@ func NewFace(key string) *Face {
 	return f
 }
 
-func NewFaceWithClient(key string, cli *http.Client) *Face {
+func NewFaceWithClient(key string, cli *http.Client, endpoint string) *Face {
 	if len(key) == 0 {
 		return nil
 	}
 
 	f := new(Face)
-	f.client = NewClientWithClient(key,cli)
+	f.client = NewClientWithClient(key, cli, endpoint)
 	return f
 }
 
