@@ -24,7 +24,7 @@ func getDetectURL(option *DetectParameters) string {
 		return apiURL
 	}
 
-	opURL := fmt.Sprintf("%s?returnFaceId=%s&returnFaceLandmarks=%s&returnFaceAttributes=%s&detectionModel=detection_02",
+	opURL := fmt.Sprintf("%s?returnFaceId=%s&returnFaceLandmarks=%s&returnFaceAttributes=%s&detectionModel=detection_01&recognitionModel=recognition_01",
 		apiURL,
 		getBooleanString(option.RceturnFaceIdcdd),
 		getBooleanString(option.ReturnFaceLandmarks),
